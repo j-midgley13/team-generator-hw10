@@ -22,9 +22,87 @@ function addTeamMember(){
             choices: ["Manager", "Engineer", "Intern", "Team Build Finished"]
         }
     ])
-}.then
+}
+
+function addManager(){
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "name",
+            message: "What is the Manager's name?"
+        },
+        {
+            type: "input",
+            name: "id",
+            message: "What is the Manager's ID number?"
+        },
+        {
+            type: "input",
+            name: "email",
+            message: "What is the Manager's work email?"
+        },
+        {
+            type: "input",
+            name: "officeNumber",
+            message: "What is the Manager's office Number?"
+        }
+    ])
+};
+
+function addEngineer(){
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "name",
+            message: "What is the Engineer's name?"
+        },
+        {
+            type: "input",
+            name: "id",
+            message: "What is the Engineer's ID number?"
+        },
+        {
+            type: "input",
+            name: "email",
+            message: "What is the Engineer's work email?"
+        },
+        {
+            type: "input",
+            name: "github",
+            message: "What is the Engineer's GitHub username?"
+        }
+    ])
+};
+
+function addIntern(){
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "name",
+            message: "What is the Intern's name?"
+        },
+        {
+            type: "input",
+            name: "id",
+            message: "What is the Intern's ID number?"
+        },
+        {
+            type: "input",
+            name: "email",
+            message: "What is the Intern's work email?"
+        },
+        {
+            type: "input",
+            name: "school",
+            message: "What is the Intern's school?"
+        }
+    ])
+};
 
 addTeamMember();
+// addManager();
+// addEngineer();
+// addIntern();
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
