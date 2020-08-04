@@ -21,7 +21,23 @@ function addTeamMember(){
             message: "Choose a team member",
             choices: ["Manager", "Engineer", "Intern", "Team Build Finished"]
         }
-    ])
+    ]).then(response => {
+        switch(response.role) {
+            case "Manager":
+                addManager();
+                break;
+            case "Engineer":
+                addEngineer();
+                break;
+            case "Intern":
+                addIntern();
+                break;
+            case "Team Build Finished":
+                console.log("Your team is complete!")
+                render(team);
+                break;
+        }
+    })
 }
 
 function addManager(){
