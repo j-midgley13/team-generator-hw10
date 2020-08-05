@@ -9,6 +9,7 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
+const seenID = {};
 
 team = [];
 
@@ -54,7 +55,8 @@ function addManager(){
             type: "input",
             name: "id",
             message: "What is the Manager's ID number?",
-            validate: answerVal
+            validate: answerVal,
+            validate: idVal
         },
         {
             type: "input",
@@ -72,7 +74,7 @@ function addManager(){
         console.log(response);
         const newManager = new Manager(response.name, response.id, response.email, response.officeNumber);
         team.push(newManager);
-        console.log(team);
+        // console.log(team);
         return addTeamMember();
     })
 };
@@ -89,7 +91,8 @@ function addEngineer(){
             type: "input",
             name: "id",
             message: "What is the Engineer's ID number?",
-            validate: answerVal
+            validate: answerVal,
+            validate: idVal
         },
         {
             type: "input",
@@ -107,7 +110,7 @@ function addEngineer(){
         console.log(response);
         const newEngineer = new Engineer(response.name, response.id, response.email, response.github);
         team.push(newEngineer);
-        console.log(team);
+        // console.log(team);
         return addTeamMember();
     })
 };
@@ -124,7 +127,8 @@ function addIntern(){
             type: "input",
             name: "id",
             message: "What is the Intern's ID number?",
-            validate: answerVal
+            validate: answerVal,
+            validate: idVal
         },
         {
             type: "input",
@@ -142,7 +146,7 @@ function addIntern(){
         console.log(response);
         const newIntern = new Intern(response.name, response.id, response.email, response.school);
         team.push(newIntern);
-        console.log(team);
+        // console.log(team);
         return addTeamMember();
     })
 };
@@ -154,6 +158,17 @@ function answerVal(value) {
         return true;
     }
 };
+
+function idVal(id) {
+    if (seenID[id]) {
+        return "ID belongs to another empoloyee."
+    } else {
+        seenID[id] = true;
+        return true;
+    }
+};
+
+
 
 addTeamMember();
 // addManager();
