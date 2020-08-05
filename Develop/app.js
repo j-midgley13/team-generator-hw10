@@ -47,22 +47,26 @@ function addManager(){
         {
             type: "input",
             name: "name",
-            message: "What is the Manager's name?"
+            message: "What is the Manager's name?",
+            validate: answerVal
         },
         {
             type: "input",
             name: "id",
-            message: "What is the Manager's ID number?"
+            message: "What is the Manager's ID number?",
+            validate: answerVal
         },
         {
             type: "input",
             name: "email",
-            message: "What is the Manager's work email?"
+            message: "What is the Manager's work email?",
+            validate: answerVal
         },
         {
             type: "input",
             name: "officeNumber",
-            message: "What is the Manager's office Number?"
+            message: "What is the Manager's office Number?",
+            validate: answerVal
         }
     ]).then(response => {
         console.log(response);
@@ -78,22 +82,26 @@ function addEngineer(){
         {
             type: "input",
             name: "name",
-            message: "What is the Engineer's name?"
+            message: "What is the Engineer's name?",
+            validate: answerVal
         },
         {
             type: "input",
             name: "id",
-            message: "What is the Engineer's ID number?"
+            message: "What is the Engineer's ID number?",
+            validate: answerVal
         },
         {
             type: "input",
             name: "email",
-            message: "What is the Engineer's work email?"
+            message: "What is the Engineer's work email?",
+            validate: answerVal
         },
         {
             type: "input",
             name: "github",
-            message: "What is the Engineer's GitHub username?"
+            message: "What is the Engineer's GitHub username?",
+            validate: answerVal
         }
     ]).then(response => {
         console.log(response);
@@ -109,22 +117,26 @@ function addIntern(){
         {
             type: "input",
             name: "name",
-            message: "What is the Intern's name?"
+            message: "What is the Intern's name?",
+            validate: answerVal
         },
         {
             type: "input",
             name: "id",
-            message: "What is the Intern's ID number?"
+            message: "What is the Intern's ID number?",
+            validate: answerVal
         },
         {
             type: "input",
             name: "email",
-            message: "What is the Intern's work email?"
+            message: "What is the Intern's work email?",
+            validate: answerVal
         },
         {
             type: "input",
             name: "school",
-            message: "What is the Intern's school?"
+            message: "What is the Intern's school?",
+            validate: answerVal
         }
     ]).then(response => {
         console.log(response);
@@ -133,6 +145,14 @@ function addIntern(){
         console.log(team);
         return addTeamMember();
     })
+};
+
+function answerVal(value) {
+    if(value === "") {
+        return "Field cannot be left blank.";
+    } else {
+        return true;
+    }
 };
 
 addTeamMember();
