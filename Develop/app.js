@@ -10,6 +10,7 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
+team = [];
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
@@ -62,7 +63,12 @@ function addManager(){
             name: "officeNumber",
             message: "What is the Manager's office Number?"
         }
-    ])
+    ]).then(response => {
+        console.log(response);
+        const newManager = new Manager(response.name, response.id, response.email, response.officeNumber);
+        team.push(newManager);
+        console.log(team);
+    })
 };
 
 function addEngineer(){
@@ -87,7 +93,12 @@ function addEngineer(){
             name: "github",
             message: "What is the Engineer's GitHub username?"
         }
-    ])
+    ]).then(response => {
+        console.log(response);
+        const newEngineer = new Engineer(response.name, response.id, response.email, response.github);
+        team.push(newEngineer);
+        console.log(team);
+    })
 };
 
 function addIntern(){
@@ -112,7 +123,12 @@ function addIntern(){
             name: "school",
             message: "What is the Intern's school?"
         }
-    ])
+    ]).then(response => {
+        console.log(response);
+        const newIntern = new Intern(response.name, response.id, response.email, response.school);
+        team.push(newIntern);
+        console.log(team);
+    })
 };
 
 addTeamMember();
