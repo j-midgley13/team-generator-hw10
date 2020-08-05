@@ -34,7 +34,8 @@ function addTeamMember(){
                 addIntern();
                 break;
             case "Team Build Finished":
-                console.log("Your team is complete!")
+                console.log("Your team is complete!");
+                console.log(team);
                 render(team);
                 break;
         }
@@ -68,6 +69,7 @@ function addManager(){
         const newManager = new Manager(response.name, response.id, response.email, response.officeNumber);
         team.push(newManager);
         console.log(team);
+        return addTeamMember();
     })
 };
 
@@ -98,6 +100,7 @@ function addEngineer(){
         const newEngineer = new Engineer(response.name, response.id, response.email, response.github);
         team.push(newEngineer);
         console.log(team);
+        return addTeamMember();
     })
 };
 
@@ -128,6 +131,7 @@ function addIntern(){
         const newIntern = new Intern(response.name, response.id, response.email, response.school);
         team.push(newIntern);
         console.log(team);
+        return addTeamMember();
     })
 };
 
