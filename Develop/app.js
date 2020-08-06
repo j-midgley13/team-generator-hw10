@@ -10,6 +10,7 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 const seenID = {};
+const seenEmail = {};
 
 team = [];
 
@@ -55,14 +56,13 @@ function addManager(){
             type: "input",
             name: "id",
             message: "What is the Manager's ID number?",
-            validate: answerVal,
             validate: idVal
         },
         {
             type: "input",
             name: "email",
             message: "What is the Manager's work email?",
-            validate: answerVal
+            validate: emailVal
         },
         {
             type: "input",
@@ -91,7 +91,6 @@ function addEngineer(){
             type: "input",
             name: "id",
             message: "What is the Engineer's ID number?",
-            validate: answerVal,
             validate: idVal
         },
         {
@@ -127,7 +126,6 @@ function addIntern(){
             type: "input",
             name: "id",
             message: "What is the Intern's ID number?",
-            validate: answerVal,
             validate: idVal
         },
         {
@@ -160,15 +158,30 @@ function answerVal(value) {
 };
 
 function idVal(id) {
-    if (seenID[id]) {
-        return "ID belongs to another empoloyee."
+    if (id === "") {
+        return "ID field cannot be left blank."
+    } else if (seenID[id]) {
+        return "ID belongs to another employee."
     } else {
         seenID[id] = true;
         return true;
     }
 };
 
+function emailVal(email) {
+    if (email === "") {
+        return "Email field cannot be left blank."
+    } else if (seenEmail[email]) {
+        return "Email belongs to another employee"
+    } 
+    // else if (email) {
 
+    // } 
+    else {
+        seenEmail[email] = true;
+        return true;
+    }
+}
 
 addTeamMember();
 // addManager();
