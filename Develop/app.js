@@ -9,10 +9,10 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
-const seenID = {};
-const seenEmail = {};
 
-team = [];
+let seenID = {};
+
+let team = [];
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
@@ -39,6 +39,7 @@ function addTeamMember(){
                 console.log("Your team is complete!");
                 console.log(team);
                 render(team);
+                createHtml();
                 break;
         }
     })
@@ -97,7 +98,7 @@ function addEngineer(){
             type: "input",
             name: "email",
             message: "What is the Engineer's work email?",
-            validate: answerVal
+            validate: emailVal
         },
         {
             type: "input",
@@ -161,7 +162,7 @@ function idVal(id) {
     if (id === "") {
         return "ID field cannot be left blank."
     } else if (seenID[id]) {
-        return "ID belongs to another employee."
+        return "Invalid ID."
     } else {
         seenID[id] = true;
         return true;
@@ -169,19 +170,21 @@ function idVal(id) {
 };
 
 function emailVal(email) {
-    if (email === "") {
-        return "Email field cannot be left blank."
-    } else if (seenEmail[email]) {
-        return "Email belongs to another employee"
-    } 
-    // else if (email) {
-
-    // } 
-    else {
-        seenEmail[email] = true;
-        return true;
+    const emailFormat = /\S+@\S+\.\S+/;
+    if((email.charAt(0)===".")||(email==="")){
+        return "Invalid email address."    
     }
-}
+    else if(email.match(emailFormat)){
+        return true
+    }
+    else{
+        return "Invalid email address."
+    }
+};
+
+function createHtml (){
+    fs.writeFileSync(outputPath, render(team), "utf-8");
+};
 
 addTeamMember();
 // addManager();
