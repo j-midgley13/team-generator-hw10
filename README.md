@@ -1,175 +1,50 @@
-# Unit 10 OOP Homework: Template Engine - Employee Summary
+# Team Generator Homework 10  
 
-One of the most important aspects of programming is writing code that is readable, reliable, and maintainable. Oftentimes, *how* we design our code is just as important as the code itself. In this homework assignment, your challenge is to build a Node CLI that takes in information about employees and generates an HTML webpage that displays summaries for each person. Since testing is a key piece in making code maintainable, you will also be ensuring that all unit tests pass.
+## Introduction. 
 
+This assignment was given for an employee (a manager, most likely) to construct a team given a series of node prompts. The selected team would then be populated into an html page to an easy-to-read breakdown of the team with name, employee number, email, and other unique identifiers for the team. We were given a series of tests so we could write proper code to gather the given information for Manager, Engineer, and Intern employees.
 
-## Instructions
+## Table of Contents:
+* [Objectives](#Objectives)
+* [Process](#Process)
+* [Challenges](#Challenges)
+* [Summary](#Summary)
+* [Video](#Video)
+* [Screenshots](#Screenshots)
 
-You will build a software engineering team generator command line application. The application will prompt the user for information about the team manager and then information about the team members. The user can input any number of team members, and they may be a mix of engineers and interns. This assignment must also pass all unit tests. When the user has completed building the team, the application will create an HTML file that displays a nicely formatted team roster based on the information provided by the user. Following the [common templates for user stories](https://en.wikipedia.org/wiki/User_story#Common_templates), we can frame this challenge as follows:
+## Objectives. 
 
-```
-As a manager
-I want to generate a webpage that displays my team's basic info
-so that I have quick access to emails and GitHub profiles
-```
-
-How do you deliver this? Here are some guidelines:
-
-* Use the [Inquirer npm package](https://github.com/SBoudrias/Inquirer.js/) to prompt the user for their email, id, and specific information based on their role with the company. For instance, an intern may provide their school, whereas an engineer may provide their GitHub username.
-
-* Your app will run as a Node CLI to gather information about each employee.
-
-* Below is an example of what your application may look like. Remember, the styling is completely up to you so try to make it unique.
-
-![Employee Summary 1](./Assets/10-OOP-homework-demo-1.png)
-![Employee Summary 2](./Assets/10-OOP-homework-demo-2.png)
-
-In the `Develop` folder, there is a `package.json`, so make sure to `npm install`.
-
-The dependencies are, [jest](https://jestjs.io/) for running the provided tests, and [inquirer](https://www.npmjs.com/package/inquirer) for collecting input from the user.
-
-There are also unit tests to help you build the classes necessary.
-
-It is recommended that you follow this workflow:
-
-1. Run tests
-2. Create or update classes to pass a single test case
-3. Repeat
-
-🎗 Remember, you can run the tests at any time with `npm run test`
-
-It is recommended that you start with a directory structure that looks like this:
-
-```
-lib/           // classes and helper code
-output/        // rendered output
-templates/     // HTML template(s)
-test/          // jest tests
-  Employee.test.js
-  Engineer.test.js
-  Intern.test.js
-  Manager.test.js
-app.js         // Runs the application
+```md
+As a manager,
+I want to generate a webpage that displays my team's basic information
+so that I have quick access to emails and GitHub profiles.
 ```
 
-### Hints
+## Process 
 
-* Create multiple HTML templates for each type of user. For example, you could use the following templates:
+* I first copied the homework into my own repository for the assignment.  
+* I then installed inquirer and npm test into my repo.  
+* I then went to the employee.js file to beign writing code to pass tests.
+* I then went to the other js files (manager, engineer, intern) to inherit from emloyee and also pass tests. 
+* I then continued to the app.js file to write the code that asked questions to build out a team through npm inquirer.
+* I added functions to inquirer make sure no one can have the same employee number, verified proper email structure, and got GitHub information for Engineers and school information for interns.
+* I then added the writefilesync to render the team, and it created and populated a team.html file located in an output folder.   
 
-  * `main.html`
+## Challenges
 
-  * `engineer.html`
-  
-  * `intern.html`
-  
-  * `manager.html`
+This assignment took our first node project and turned the dial up. The main challenge I faced was writing the code that got the tests to pass. At first, the code to get the tests to pass was difficult to do. My first instinct is to write code out, try it, and if it didn't work then I would go change it until it does. This forced me to do the opposite. Write code to fail first so it's easier to make work more broadly. As I got used to the process, I found it easier to write code this way. Adding more intricate functions for the inquirer validations was more difficult than I had imagined. I was stuck for a while on that when I got some good inspiration and help from classmates. After figuring out the proper way to output the team.html, it was just up to styling from that point. Challenging but enjoyable assignment!
 
-* You will want to make your methods as pure as possible. This means try to make your methods simple so that they are easier to test.
+## Summary
 
-* The different employee types should all inherit some methods and properties from a base class of `Employee`.
+This assignment was fun but challenging for me! Front end vs. back end web development is much more different than I had anticipated. Back end requires more mathematical brain, following very logical steps. It isn't very visual as front end is. It is fun to learn how to connect different pages and the process it takes so it can all come together.
 
-* In your HTML template files, you may want to add a placeholder character that helps your program identify where the dynamic markup begins and ends.
+## Video 
 
-## Minimum Requirements
+![process gif](./Assets/team-generator-hw10.gif)  
+[Link to my Google Drive with the full video](https://drive.google.com/file/d/1mfURMUb5kjlGnR7lsMDXyL8M4zZfpsGx/view)
 
-* Functional application.
+## Screenshots
 
-* GitHub repository with a unique name and a README describing the project.
+![team build finished](./Assets/teamHTML.png)
+![inquirer prompts](./Assets/inquirerPrompts.png)
 
-* User can use the CLI to generate an HTML page that displays information about their team.
-
-* All tests must pass.
-
-### Classes
-The project must have the these classes: `Employee`, `Manager`, `Engineer`,
-`Intern`. The tests for these classes in the `tests` directory must all pass.
-
-The first class is an `Employee` parent class with the following properties and
-methods:
-
-  * name
-  * id
-  * email
-  * getName()
-  * getId()
-  * getEmail()
-  * getRole() // Returns 'Employee'
-
-The other three classes will extend `Employee`. 
-
-In addition to `Employee`'s properties and methods, `Manager` will also have:
-
-  * officeNumber
-
-  * getRole() // Overridden to return 'Manager'
-
-In addition to `Employee`'s properties and methods, `Engineer` will also have:
-
-  * github  // GitHub username
-
-  * getGithub()
-
-  * getRole() // Overridden to return 'Engineer'
-
-In addition to `Employee`'s properties and methods, `Intern` will also have:
-
-  * school 
-
-  * getSchool()
-
-  * getRole() // Overridden to return 'Intern'
-
-### User input
-
-The project must prompt the user to build an engineering team. An engineering
-team consists of a manager, and any number of engineers and interns.
-
-### Roster output
-
-The project must generate a `team.html` page in the `output` directory, that displays a nicely formatted team roster. Each team member should display the following in no particular order:
-
-  * Name
-
-  * Role
-
-  * ID
-
-  * Role-specific property (School, link to GitHub profile, or office number)
-
-## Bonus
-
-* Use validation to ensure that the information provided is in the proper expected format.
-
-* Add the application to your portfolio.
-
-## Commit Early and Often
-
-One of the most important skills to master as a web developer is version control. Building the habit of committing via Git is important for two reasons:
-
-* Your commit history is a signal to employers that you are actively working on projects and learning new skills.
-
-* Your commit history allows you to revert your codebase in the event that you need to return to a previous state.
-
-Follow these guidelines for committing:
-
-* Make single-purpose commits for related changes to ensure a clean, manageable history. If you are fixing two issues, make two commits.
-
-* Write descriptive, meaningful commit messages so that you and anyone else looking at your repository can easily understand its history.
-
-* Don't commit half-done work, for the sake of your collaborators (and your future self!).
-
-* Test your application before you commit to ensure functionality at every step in the development process.
-
-We would like you to have well over 200 commits by graduation, so commit early and often!
-
-
-## Submission on BCS
-
-You are required to submit the following:
-
-* The URL of the GitHub repository
-
-* A video demonstrating the entirety of the app's functionality 
-
-- - -
-© 2019 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
